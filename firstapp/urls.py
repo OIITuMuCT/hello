@@ -12,5 +12,6 @@ urlpatterns = [
     # re_path(r"^users/(?P<id>\d+)/(?P<name>\D+)/", views.users),
     path("users/", views.users),  # Маршрут для продукта по умолчанию
     path("users/<int:id>/<str:name>/", views.users),
+    path('details', views.details),
     path("", views.index),
 ]
