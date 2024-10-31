@@ -37,7 +37,11 @@ def details(request):
 
 
 def index(request):
-    data = {"header": "Передача параметров в шаблон Django", "message":"Загружен шаблон template/firstapp/index_app1.html"}
+    header = "Персональные данные"                          # символьная переменная
+    langs = ["Английский", "Немецкий", "Испанский"]         # список
+    user = {"name": "Alex", "age": 30}                      # словарь
+    address = ("Виноградная", 23, 45)
+    data = {"header": header, "langs":langs, "user": user, "address": address}
     return render(request, "firstapp/index_app1.html", context=data)
 
 
