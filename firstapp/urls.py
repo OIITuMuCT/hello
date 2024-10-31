@@ -14,4 +14,5 @@ urlpatterns = [
     path("users/<int:id>/<str:name>/", views.users),
     path('details', views.details),
     path("", views.index),
+    path('access/<int:age>', views.access),
 ]
