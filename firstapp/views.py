@@ -6,7 +6,7 @@ from django.http import (
     HttpResponseBadRequest,
     HttpResponseForbidden,
 )
-from django.template.response import TemplateResponse
+
 # Create your views here.
 
 
@@ -37,10 +37,8 @@ def details(request):
 
 
 def index(request):
-    return TemplateResponse(request, "firstapp/home.html")
-    return render(request, "firstapp/home.html")
-    return render(request, "index.html")
-    return HttpResponse("<h1>Main Page</h1>")
+    data = {"header": "Передача параметров в шаблон Django", "message":"Загружен шаблон template/firstapp/index_app1.html"}
+    return render(request, "firstapp/index_app1.html", context=data)
 
 
 def access(request, age):
