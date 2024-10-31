@@ -6,7 +6,7 @@ from django.http import (
     HttpResponseBadRequest,
     HttpResponseForbidden,
 )
-
+from django.template.response import TemplateResponse
 # Create your views here.
 
 
@@ -37,6 +37,7 @@ def details(request):
 
 
 def index(request):
+    return TemplateResponse(request, "firstapp/home.html")
     return render(request, "firstapp/home.html")
     return render(request, "index.html")
     return HttpResponse("<h1>Main Page</h1>")
