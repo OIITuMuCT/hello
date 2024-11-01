@@ -37,9 +37,11 @@ def details(request):
 
 
 def index(request):
-    header = "Иностранные языки"                          # символьная переменная
-    list_langs = ["Английский", "Немецкий", "Испанский", "Французский", "Итальянский"]         # список
-    data = {"header": header, "list_langs":list_langs, "user": user, "address": address}
+    header = "Разветвление в шабонах"                          # символьная переменная
+    num = 2
+    var1 = "Это первая ветка в инструкции if"
+    var2 = "Это воторая ветка в инструкции if"
+    data = {"header":header, "num": num, "var1": var1, "var2": var2}
     return render(request, "firstapp/index_app1.html", context=data)
 
 
