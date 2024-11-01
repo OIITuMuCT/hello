@@ -3,11 +3,20 @@
 {% block header %}Контактные данные.{% endblock %}
 {% block content %}
     Компания: "Интеллектуальные информационные системы".
-    Адрес: г.Москва, ул. Короленко, д. 24
-    тел.: +7 999 999 99 99
-    e-mail: iis@example.com
-    Это содержимое блока content. Этот текст находится 
-    на странице contact.html, но он вставлен в базовыый 
-    шаблон - base.html, в блок с именем context.
-    Это шаблон из файла templates/fiestapp/contact.html
+    <div class="container-fluid text-center my-2 border border-3">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Адрес</h3>
+                    <p>г.Москва, ул. Короленко, д. 24</p>
+            </div>
+            <div class="col-sm-3">
+                <h3>Телефон</h3>
+                <p>+7 999 999 99 99</p>
+            </div>
+                <div class="col-sm-3">
+                <h3>e-mail</h3>
+                <p>iis@example.com</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
