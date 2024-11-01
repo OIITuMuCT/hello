@@ -1,0 +1,13 @@
+{% extends "firstapp/base.html" %}
+{% block title %}Контакты{% endblock %}
+{% block header %}Контактные данные.{% endblock %}
+{% block content %}
+    Компания: "Интеллектуальные информационные системы".
+    Адрес: г.Москва, ул. Короленко, д. 24
+    тел.: +7 999 999 99 99
+    e-mail: iis@example.com
+    Это содержимое блока content. Этот текст находится 
+    на странице contact.html, но он вставлен в базовыый 
+    шаблон - base.html, в блок с именем context.
+    Это шаблон из файла templates/fiestapp/contact.html
+{% endblock %}

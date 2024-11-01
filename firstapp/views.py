@@ -12,12 +12,11 @@ from django.http import (
 
 
 def contact(request):
-    return HttpResponseRedirect("/about")
-    # return HttpResponse("Contacts")
+    return render(request, 'firstapp/contact.html')
 
 
 def about(request):
-    return HttpResponse("About")
+    return render(request, 'firstapp/about.html')
 
 
 def products(request, product_id=1):
@@ -46,8 +45,8 @@ def index(request):
     value_upper = "Эта строка в вехнем регистере"
     data = {"header":header, "value_num": value_num, "value_date": value_date,
             "value_time": value_time, "value_title": value_title, "value_upper": value_upper}
-    return render(request, "firstapp/home.html", context=data)
-    return render(request, "firstapp/index_app1.html", context=data)
+
+    return render(request, "firstapp/index.html", context=data)
 
 
 def access(request, age):
