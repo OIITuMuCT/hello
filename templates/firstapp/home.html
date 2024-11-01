@@ -1,12 +1,22 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello Django</title>
+    <link  href="{% static 'css/styles.css' %}" rel="stylesheet">
+    {% comment %} <style>h1{color: red;}</style>
+    <style>h2{color: blue; font-size: 22px;}</style> {% endcomment %}
 </head>
 <body>
-    <h1>Вы на домашней странице Django!</h1>
+
+    <h1>Домашняя страница Django!</h1>
     <h2>template/firstapp/home.html</h2>
+    <img src="{% static "images/ChatScheme.jpg" %}" alt="">
+    <img src="{% static "images/code.png" %}" alt="No images/code.png">
 </body>
 </html>
