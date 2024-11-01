@@ -37,16 +37,14 @@ def details(request):
 
 
 def index(request):
-    header = "Фильтры в шаблонах"                          # символьная переменная
-    value_num = 2
-    value_date = datetime.datetime.now()
-    value_time = datetime.datetime.now()
-    value_title = "Это пример использования фильтров"
-    value_upper = "Эта строка в вехнем регистере"
-    data = {"header":header, "value_num": value_num, "value_date": value_date,
-            "value_time": value_time, "value_title": value_title, "value_upper": value_upper}
-
-    return render(request, "firstapp/index.html", context=data)
+    my_kv = ['I квартал ->', 'II  квартал ->', 'III квартал ->', 'IV квартал ->']
+    my_month = [
+        "Январь", "Февраль", "Март",
+        "Апрель", "Май", "Июнь", "Июль",
+        "Август", "Октябрь", "Ноябрь","Декабрь"
+    ]
+    context = {'my_month': my_month, "my_kv": my_kv }
+    return render(request, "firstapp/index.html", context)
 
 
 def access(request, age):
