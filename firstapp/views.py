@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render
 from django.http import (
     HttpResponse,
@@ -37,11 +38,14 @@ def details(request):
 
 
 def index(request):
-    header = "Разветвление в шабонах"                          # символьная переменная
-    num = 2
-    var1 = "Это первая ветка в инструкции if"
-    var2 = "Это воторая ветка в инструкции if"
-    data = {"header":header, "num": num, "var1": var1, "var2": var2}
+    header = "Фильтры в шаблонах"                          # символьная переменная
+    value_num = 2
+    value_date = datetime.datetime.now()
+    value_time = datetime.datetime.now()
+    value_title = "Это пример использования фильтров"
+    value_upper = "Эта строка в вехнем регистере"
+    data = {"header":header, "value_num": value_num, "value_date": value_date,
+            "value_time": value_time, "value_title": value_title, "value_upper": value_upper}
     return render(request, "firstapp/index_app1.html", context=data)
 
 
