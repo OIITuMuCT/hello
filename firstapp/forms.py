@@ -9,3 +9,4 @@ class UserForm(forms.Form):
     date = forms.DateField(label="Введите дату",widget=forms.DateInput(attrs={"type": "date"}))
     date_time = forms.DateTimeField(label="Введите дату и время")
     vyb = forms.NullBooleanField(label="Вы поедете в Сочи этим летом?")
+    email = forms.EmailField(label="Электронный адрес",help_text="Обязательный символ - @")
