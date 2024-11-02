@@ -11,5 +11,5 @@ class UserForm(forms.Form):
     vyb = forms.NullBooleanField(label="Вы поедете в Сочи этим летом?")
     email = forms.EmailField(label="Электронный адрес",help_text="Обязательный символ - @")
     file = forms.FileField(label="Файл")
-    file_path = forms.FilePathField(label="Выберите файл", path="/home/neko/Documents")
+    file_path = forms.FilePathField(label="Выберите файл", path="/home/neko/Documents", allow_files="True", allow_folders="True")
     
