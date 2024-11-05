@@ -60,11 +60,12 @@ def my_form2(request):
     if request.method == "POST":
         userwform = UserWForm(request.POST)
         if userwform.is_valid():
-            name = userwform.cleaned_data['name']
-            return HttpResponse("<h2>Имя введено корректно {0}</h2>".format(name))
+            name = request.POST.get("name" ) # Получить значения поля Имя
+            age = request.POST.get("age")  # Получить значения поля Возраст
+            output = "<h2>Пользователь</h2><h3>Имя - {0}, \
+                Возраст - {1}</h3>".format(name, age)
+            return HttpResponse(output)
 
-    else:
-        userwform = UserWForm()
     context = {"form": userwform}
     return render(request, "firstapp//my_form2.html", context)
 

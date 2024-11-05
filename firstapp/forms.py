@@ -28,10 +28,7 @@ class UserForm(forms.Form):
 
 
 class UserWForm(forms.Form):
-    name = forms.CharField(label="Name", help_text="Введите ФИО")
-    age = forms.IntegerField(label="Age", min_value=1, max_value=120)
-    email = forms.EmailField(label="Адрес электронной почты", help_text="Обязательный символ - @")
-    reklama = forms.BooleanField(label="Согласны получать рекламу")
-    field_order = ["comment", "name", 'age']
+    name = forms.CharField(label="Имя клиента:", widget=forms.TextInput(attrs={"class": "myfield"}))
+    age = forms.IntegerField(label="Возраст клиента:", min_value=1, max_value=120, widget=forms.NumberInput(attrs={"class": "myfield"}))
     required_css_class = "field"
     error_css_class = "error"
