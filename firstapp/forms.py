@@ -25,3 +25,8 @@ class UserForm(forms.Form):
     combo_multi_text = forms.MultiValueField(label="комплескное поле", fields=(
         forms.CharField(max_length=20), forms.EmailField()
     ))
+    
+class UserWForm(forms.Form):
+    name = forms.CharField(label="Name")
+    age = forms.IntegerField(label="Age")
+    comment = forms.CharField(label="Comment", widget=forms.Textarea)

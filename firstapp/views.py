@@ -8,7 +8,8 @@ from django.http import (
     HttpResponseForbidden,
 )
 
-from .forms import UserForm
+from .forms import UserForm, UserWForm
+
 # Create your views here.
 
 
@@ -44,8 +45,14 @@ def index(request):
 
 def my_form(request):
     my_form = UserForm()
+    
     context = {"form": my_form}
     return render(request, "firstapp/my_form.html", context)
+
+def my_form2(request):
+    my_form2 = UserWForm()
+    context = {"form": my_form2}
+    return render(request, "firstapp//my_form.html", context)
 
 def access(request, age):
     if age not in range(1, 111):
