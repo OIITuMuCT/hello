@@ -30,4 +30,4 @@ class UserWForm(forms.Form):
     name = forms.CharField(label="Name", initial="Введите ФИО")
     age = forms.IntegerField(label="Age", initial=18)
     comment = forms.CharField(label="Comment", widget=forms.Textarea)
-    
+    field_order = ["comment", "name", 'age']
