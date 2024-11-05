@@ -25,12 +25,13 @@ class UserForm(forms.Form):
     combo_multi_text = forms.MultiValueField(label="комплескное поле", fields=(
         forms.CharField(max_length=20), forms.EmailField()
     ))
-    
+
+
 class UserWForm(forms.Form):
-    name = forms.CharField(label="Name", initial="Введите ФИО")
-    age = forms.IntegerField(label="Age", initial=18)
-    email = forms.EmailField(label="Адресс электронной почты")
+    name = forms.CharField(label="Name", help_text="Введите ФИО")
+    age = forms.IntegerField(label="Age", min_value=1, max_value=120)
+    email = forms.EmailField(label="Адрес электронной почты", help_text="Обязательный символ - @")
     reklama = forms.BooleanField(label="Согласны получать рекламу")
     field_order = ["comment", "name", 'age']
-    requred_css_class = "field"
+    required_css_class = "field"
     error_css_class = "error"
