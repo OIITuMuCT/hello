@@ -50,9 +50,18 @@ def my_form(request):
     return render(request, "firstapp/my_form.html", context)
 
 def my_form2(request):
-    my_form2 = UserWForm()
-    context = {"form": my_form2}
-    return render(request, "firstapp//my_form.html", context)
+    userwform = UserWForm()
+    if request.method == "POST":
+        userwform = UserWForm(request.POST)
+        if userwform.is_valid():
+            name = userwform.cleaned_data['name']
+            return HttpResponse("<h2>Имя введено корректно {0}</h2>".format(name))
+        else:
+            return HttpResponse("Ошибка ввода данных")
+    else:
+        userwform = UserWForm()
+        context = {"form": userwform}
+        return render(request, "firstapp//my_form.html", context)
 
 def access(request, age):
     if age not in range(1, 111):
