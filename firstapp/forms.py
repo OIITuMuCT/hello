@@ -27,6 +27,7 @@ class UserForm(forms.Form):
     ))
     
 class UserWForm(forms.Form):
-    name = forms.CharField(label="Name")
-    age = forms.IntegerField(label="Age")
+    name = forms.CharField(label="Name", initial="Введите ФИО")
+    age = forms.IntegerField(label="Age", initial=18)
     comment = forms.CharField(label="Comment", widget=forms.Textarea)
+    
