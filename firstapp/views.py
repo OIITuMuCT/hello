@@ -45,7 +45,13 @@ def index(request):
 
 def my_form(request):
     my_form = UserForm()
-    
+    if request.method == "POST":
+        my_form = UserForm(request.POST)
+        if my_form.is_valid():
+            name = my_form.cleaned_data['name']
+            return HttpResponse(
+                "<h2>Имя введено корректно {0}</h2>".format(name)
+            )
     context = {"form": my_form}
     return render(request, "firstapp/my_form.html", context)
 

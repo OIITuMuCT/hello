@@ -32,3 +32,5 @@ class UserWForm(forms.Form):
     email = forms.EmailField(label="Адресс электронной почты")
     reklama = forms.BooleanField(label="Согласны получать рекламу")
     field_order = ["comment", "name", 'age']
+    requred_css_class = "field"
+    error_css_class = "error"
