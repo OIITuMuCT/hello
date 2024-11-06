@@ -10,6 +10,7 @@ class Person(models.Model):
     def __str__(self):
         return self.name
 
+# One to many model example
 class Company(models.Model):
     name = models.CharField(max_length=30)
     
@@ -23,6 +24,15 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+# Many To Many model example
+class Course(models.Model):
+    name = models.CharField(max_length=30)
+
+class Student(models.Model):
+    name = models.CharField(max_length=30)
+    courses = models.ManyToManyField(Course)
+    
 
 
 
