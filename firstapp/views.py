@@ -1,5 +1,5 @@
 import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import (
     HttpResponse,
     HttpResponsePermanentRedirect,
@@ -8,8 +8,8 @@ from django.http import (
     HttpResponseForbidden,
 )
 
-from .forms import UserForm, UserWForm
-
+from .forms import UserForm, UserWForm, UserCForm
+from .models import Person
 # Create your views here.
 
 
@@ -39,8 +39,9 @@ def details(request):
 
 
 def index(request):
-    my_text = "Изучаем формы Django"
-    context = {"my_text": my_text}
+    my_text = "Изучаем модели Django"
+    people_kol = Person.object_person.count()
+    context = {"my_text": my_text, "people_kol": people_kol}
     return render(request, "firstapp/index.html", context)
 
 def my_form(request):
@@ -69,6 +70,27 @@ def my_form2(request):
     context = {"form": userwform}
     return render(request, "firstapp//my_form2.html", context)
 
+def my_form3(request):
+    form = UserCForm()
+    if request.method == "POST":
+        form = UserCForm(request.POST)
+        if form.is_valid():
+            person = Person()
+            person.name=form.cleaned_data['name']
+            person.age=form.cleaned_data['age']
+            # person.save()
+            for name, value in form.cleaned_data.items():
+                print("{}: ({}) {}".format(name, type(value), value))
+                print("Запись добавлена в базу данных Имя: {0} Возраст: {1}".format(person, person.age))
+            return redirect('my_form3')
+    my_text = 'Сведения о клиентах'
+    people = Person.object_person.all()
+    form = UserCForm()
+    context = {"my_text": my_text, "people": people, "form": form}
+    return render(request, 'firstapp/my_form3.html', context)
+
+def edit_form(request, id):
+    pass
 def access(request, age):
     if age not in range(1, 111):
         return HttpResponseBadRequest("Некорректные данные")

@@ -8,6 +8,7 @@ urlpatterns = [
     path("contact/", views.contact, name="contact"),
     path('my-form', views.my_form, name='my_form'),
     path('my-form2', views.my_form2, name = 'my_form2'),
+    path('my-form3', views.my_form3, name="my_form3"),
     # path('about/', TemplateView.as_view(template_name='firstapp/about.html')),
     # path('contact/', TemplateView.as_view(
     #     template_name='firstapp/contact.html',
