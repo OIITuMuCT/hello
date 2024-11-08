@@ -21,23 +21,27 @@
       {% endfor %}
     </div>
     <input type="submit" value="Отправить" />
-    {% if people.count > o %}
-    <h5>Список клиентов</h5>
-    <table class="table table-striped table-bordered text-start">
-      <thead>
-        <tr>
-          <tr>#</tr>
-          <tr>ФИО клиента</tr>
-          <th>Возраст</th>
+    {% if people.count > 0 %}
+      <h5>Список клиентов</h5>
+      <table class="table table-striped table-bordered text-start">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>ФИО клиента</th>
+            <th>Возраст</th>
         </tr>
       </thead>
       <tbody>
         {% for person in people %}
-        <th>
-          <th>{{person.id}}</th>
-          <th>{{person.name}}</th>
-          <th>{{person.age}}</th>
-        </th>
+        <tr>
+          <td>{{person.id}}</td>
+          <td>{{person.name}}</td>
+          <td>{{person.age}}</td>
+          <td>
+            <a href="edit_form/{{person.id}}">Изменить</a>
+            <a href="delete/{{person.id}}">Удалить</a>
+          </td>
+        </tr>
         {% endfor %}
       </tbody>
     </table>

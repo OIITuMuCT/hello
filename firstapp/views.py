@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import (
     HttpResponse,
     HttpResponsePermanentRedirect,
-    HttpResponseRedirect,
+    HttpResponseNotFound,
     HttpResponseBadRequest,
     HttpResponseForbidden,
 )
@@ -78,7 +78,7 @@ def my_form3(request):
             person = Person()
             person.name=form.cleaned_data['name']
             person.age=form.cleaned_data['age']
-            # person.save()
+            person.save()
             for name, value in form.cleaned_data.items():
                 print("{}: ({}) {}".format(name, type(value), value))
                 print("Запись добавлена в базу данных Имя: {0} Возраст: {1}".format(person, person.age))
@@ -89,8 +89,27 @@ def my_form3(request):
     context = {"my_text": my_text, "people": people, "form": form}
     return render(request, 'firstapp/my_form3.html', context)
 
+# Изменение данных о клиенте в БД
 def edit_form(request, id):
-    pass
+    person = Person.object_person.get(id=id)
+    # Если пользователь вернул отредактированные данные
+    if request.method == "POST":
+        person.name = request.POST.get("name")
+        person.age = request.POST.get("age")
+        person.save()
+        return redirect('my_form3')
+    # Если пользователь отправляет данные на редактирование
+    data = { "person": person}
+    return render(request, "firstapp/my_form.html", context=data)
+# Удаление данны о клиенте из БД
+def delete(request, id):
+    try:
+        person = Person.object_person.get(id=id)
+        person.delete()
+        return redirect('my_form3')
+    except Person.DoesNotExist:
+        return HttpResponseNotFound("<h2>Объект не найден</h2>")
+
 def access(request, age):
     if age not in range(1, 111):
         return HttpResponseBadRequest("Некорректные данные")
