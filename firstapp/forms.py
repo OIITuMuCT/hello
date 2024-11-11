@@ -1,5 +1,5 @@
 from django import forms
-from .models import Image, File
+from .models import Image, File, VideoFile, AudioFile
 
 
 class UserForm(forms.Form):
@@ -55,4 +55,15 @@ class ImageForm(forms.ModelForm):
 class FileForm(forms.ModelForm):
     class Meta:
         model = File
+        fields = "__all__"
+
+class VideoForm(forms.ModelForm):
+    class Meta:
+        model = VideoFile
+        fields = "__all__"
+
+
+class AudioForm(forms.ModelForm):
+    class Meta:
+        model = AudioFile
         fields = "__all__"

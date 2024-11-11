@@ -81,4 +81,12 @@ class VideoFile(models.Model):
     
     def __str__(self):
         return self.title
+
+
+class AudioFile(models.Model):
+    title = models.CharField(max_length=100, verbose_name="Описание файла")
+    file = models.FileField(upload_to='audios', verbose_name="Аудиофайл", null=True, blank=True)
+    obj_audio = models.Manager()
     
+    def __str__(self):
+        return self.title

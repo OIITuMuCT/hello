@@ -15,6 +15,10 @@ urlpatterns = [
     path("form_up_img/delete/<int:id>/", views.delete_img),
     path("form_up_pdf/", views.form_up_pdf, name="form_up_pdf"),
     path("form_up_pdf/delete/<int:id>/", views.delete_pdf, name="delete_pdf"),
+    path("form_up_video/", views.form_up_video, name="form_up_video"),
+    path("form_up_video/delete_video/<int:id>/", views.delete_video, name="delete_video"),
+    path("form_up_audio/", views.form_up_audio, name="form_up_audio"),
+    path("form_up_audio/delete_audio/<int:id>/", views.delete_audio, name="delete_audio"),
     # path('about/', TemplateView.as_view(template_name='firstapp/about.html')),
     # path('contact/', TemplateView.as_view(
     #     template_name='firstapp/contact.html',
