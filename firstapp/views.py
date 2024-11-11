@@ -8,8 +8,8 @@ from django.http import (
     HttpResponseForbidden,
 )
 
-from .forms import UserForm, UserWForm, UserCForm, ImageForm
-from .models import Person, Image
+from .forms import UserForm, UserWForm, UserCForm, ImageForm, FileForm
+from .models import Person, Image, File
 # Create your views here.
 
 
@@ -136,5 +136,26 @@ def delete_img(request, id):
         img = Image.obj_img.get(id=id)
         img.delete()
         return redirect('form_up_img')
+    except Person.DoesNotExist:
+        return HttpResponseNotFound("<h2>Объект не найден</h2>")
+
+
+def form_up_pdf(request):
+    if request.method == "POST":
+        form = FileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("<h2>Файл сохранен успешно!</h2>")
+    my_text = "Загруженные файлы"
+    form = FileForm()
+    file_obj = File.objects.all()
+    context = {"my_text": my_text, "file_obj": file_obj, "form":form}
+    return render(request, "firstapp/form_up_pdf.html", context)
+
+def delete_pdf(request, id):
+    try:
+        pdf = File.objects.get(id=id)
+        pdf.delete()
+        return redirect('form_up_pdf')
     except Person.DoesNotExist:
         return HttpResponseNotFound("<h2>Объект не найден</h2>")

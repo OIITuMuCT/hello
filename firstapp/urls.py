@@ -13,6 +13,8 @@ urlpatterns = [
     path("my-form3/delete/<int:id>/", views.delete, name="delete"),
     path("form_up_img/", views.form_up_img, name="form_up_img"),
     path("form_up_img/delete/<int:id>/", views.delete_img),
+    path("form_up_pdf/", views.form_up_pdf, name="form_up_pdf"),
+    path("form_up_pdf/delete/<int:id>/", views.delete_pdf, name="delete_pdf"),
     # path('about/', TemplateView.as_view(template_name='firstapp/about.html')),
     # path('contact/', TemplateView.as_view(
     #     template_name='firstapp/contact.html',

@@ -59,7 +59,7 @@ class Account(models.Model):
     password = models.CharField(max_length=20)
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
-
+# Блок загрузка Изображений, файлов, видео
 class Image(models.Model):
     title = models.CharField(max_length=100, null=False, verbose_name="Описание изображения")
     image = models.ImageField(upload_to='images', verbose_name="файл с изображением", null=True, blank=True)
@@ -73,3 +73,12 @@ class File(models.Model):
     
     def __str__(self):
         return self.title
+    
+class VideoFile(models.Model):
+    title = models.CharField(max_length=100, verbose_name="Описание файла",)
+    file = models.FileField(upload_to='videos', verbose_name="Видеофайл")
+    obj_video = models.Manager()
+    
+    def __str__(self):
+        return self.title
+    
