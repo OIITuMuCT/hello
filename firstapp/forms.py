@@ -1,4 +1,5 @@
 from django import forms
+from .models import Image, File
 
 
 class UserForm(forms.Form):
@@ -44,3 +45,14 @@ class UserCForm(forms.Form):
         max_value=120,
         widget=forms.NumberInput(attrs={"class": "myfield"}),
     )
+
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        fields ="__all__"
+        # fields = {'title', 'image'}
+
+class FileForm(forms.ModelForm):
+    class Meta:
+        model = File
+        fields = "__all__"

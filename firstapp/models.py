@@ -60,3 +60,16 @@ class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
 
 
+class Image(models.Model):
+    title = models.CharField(max_length=100, null=False, verbose_name="Описание изображения")
+    image = models.ImageField(upload_to='images', verbose_name="файл с изображением", null=True, blank=True)
+    obj_img = models.Manager()
+    def __str__(self):
+        return self.title
+
+class File(models.Model):
+    title = models.CharField(max_length=100, verbose_name="Описание файла")
+    file = models.FileField(upload_to='files', verbose_name="Файл PDF", null=True, blank=True)
+    
+    def __str__(self):
+        return self.title

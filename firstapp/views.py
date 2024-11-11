@@ -8,8 +8,8 @@ from django.http import (
     HttpResponseForbidden,
 )
 
-from .forms import UserForm, UserWForm, UserCForm
-from .models import Person
+from .forms import UserForm, UserWForm, UserCForm, ImageForm
+from .models import Person, Image
 # Create your views here.
 
 
@@ -81,7 +81,7 @@ def my_form3(request):
             person.save()
             for name, value in form.cleaned_data.items():
                 print("{}: ({}) {}".format(name, type(value), value))
-                print("Запись добавлена в базу данных Имя: {0} Возраст: {1}".format(person, person.age))
+                print("Запись добавлена в базу данных Имя: {0} Возраст: {1}".format(person.name, person.age))
             return redirect('my_form3')
     my_text = 'Сведения о клиентах'
     people = Person.object_person.all()
@@ -100,7 +100,7 @@ def edit_form(request, id):
         return redirect('my_form3')
     # Если пользователь отправляет данные на редактирование
     data = { "person": person}
-    return render(request, "firstapp/my_form.html", context=data)
+    return render(request, "firstapp/edit_form.html", context=data)
 # Удаление данны о клиенте из БД
 def delete(request, id):
     try:
@@ -117,3 +117,24 @@ def access(request, age):
         return HttpResponse("Доступ разрешен")
     else:
         return HttpResponseForbidden("Доступ заблокирован: не достаточно лет")
+
+def form_up_img(request):
+
+    if request.method == "POST":
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Форма сохранена успешно!")
+    my_text = "Загруженные изображения"
+    my_img = Image.obj_img.all()
+    form = ImageForm()
+    context = {'my_text': my_text, "my_img": my_img, "form": form}
+    return render(request, 'firstapp/form_up_img.html', context)
+
+def delete_img(request, id):
+    try:
+        img = Image.obj_img.get(id=id)
+        img.delete()
+        return redirect('form_up_img')
+    except Person.DoesNotExist:
+        return HttpResponseNotFound("<h2>Объект не найден</h2>")
